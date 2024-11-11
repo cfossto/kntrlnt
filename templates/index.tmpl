@@ -4,5 +4,26 @@
 </head>
 
 <body>
+
+    <div class="container">
+
+        {{ range .FileList }}
+        <ul>
+            <a href="/{{ . }}">{{ . }}</a>
+        </ul>
+        {{ end }}
+    
+    </div>
+
+    <div class="container"> 
+
+    {{ range $key, $value := .TypesAndUrl }}
+        <ul>
+            {{ $key  }} {{ $value }}
+        </ul>
+    {{ end }}
+    </div>
+
 <body>
+<footer>ktrlnt - developed by cfossto@git</footer>
 </html>
