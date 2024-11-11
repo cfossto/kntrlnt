@@ -37,7 +37,15 @@ func folderContentsByType(folderName string) map[string]string {
 
 	for _, entry := range entries {
 		
-		folderContentMap[entry.Name()] = entry.Type().String()
+		var fileType string
+
+		if entry.IsDir() {
+			fileType = "directory"
+		}else {
+			fileType = "img"
+		}
+
+		folderContentMap[entry.Name()] = fileType
 	}
 
 	return folderContentMap
