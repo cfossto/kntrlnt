@@ -1,2 +1,2 @@
 # kntrlnt
-KNTRLNT (Kontrollant) is a web file browswer written in Go.
+KNTRLNT (Kontrollant) is a web file browser written in Go.

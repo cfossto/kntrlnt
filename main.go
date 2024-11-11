@@ -36,15 +36,12 @@ func folderContentsByType(folderName string) map[string]string {
 	}
 
 	for _, entry := range entries {
-		
 		var fileType string
-
 		if entry.IsDir() {
 			fileType = "directory"
 		}else {
 			fileType = "img"
 		}
-
 		folderContentMap[entry.Name()] = fileType
 	}
 
@@ -69,7 +66,6 @@ func main() {
 		folderName := ctx.Param("foldername")
 
 		var fullname string = "example-folder"+"/"+folderName
-
 		var folder_content map[string]string =  folderContentsByType(fullname)
 
 		r.LoadHTMLGlob("templates/index.tmpl")
