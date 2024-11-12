@@ -25,7 +25,6 @@ func folderContentStringOutput(folderName string) []string {
 	return contentList
 }
 
-
 func folderContentsByType(folderName string) map[string]string {
 
 	folderContentMap := make(map[string]string)
@@ -39,10 +38,10 @@ func folderContentsByType(folderName string) map[string]string {
 		var fileType string
 		if entry.IsDir() {
 			fileType = "directory"
-		}else {
+		} else {
 			fileType = "img"
 		}
-		folderContentMap[entry.Name()] = fileType
+		folderContentMap[folderName+"/"+entry.Name()] = fileType
 	}
 
 	return folderContentMap
@@ -65,13 +64,21 @@ func main() {
 	r.GET("/:foldername", func(ctx *gin.Context) {
 		folderName := ctx.Param("foldername")
 
-		var fullname string = "example-folder"+"/"+folderName
-		var folder_content map[string]string =  folderContentsByType(fullname)
+		var fullname string = "example-folder" + "/" + folderName
+		var folder_content map[string]string = folderContentsByType(fullname)
 
 		r.LoadHTMLGlob("templates/index.tmpl")
 		ctx.HTML(http.StatusOK, "index.tmpl", gin.H{
 			"TypesAndUrl": folder_content,
 		})
+	})
+
+	r.GET("/image/*imagename", func(ctx *gin.Context) {
+
+		imagename := ctx.Param("imagename")
+		fmt.Println(imagename)
+
+		ctx.File("./" + imagename)
 
 	})
 
