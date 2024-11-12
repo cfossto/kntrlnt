@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 )
@@ -35,12 +36,17 @@ func folderContentsByType(folderName string) map[string]string {
 	}
 
 	for _, entry := range entries {
+
 		var fileType string
+
 		if entry.IsDir() {
 			fileType = "directory"
+		} else if strings.Contains(entry.Name(), "json") {
+			fileType = "json"
 		} else {
 			fileType = "img"
 		}
+
 		folderContentMap[folderName+"/"+entry.Name()] = fileType
 	}
 

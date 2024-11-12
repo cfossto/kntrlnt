@@ -60,9 +60,11 @@
     <div class="container" id="img-grid" style="column-count: 3;" > 
     
         {{ range $key, $value := .TypesAndUrl }}
+        {{ if eq "img" $value }}
         <div class="row">
-                <img class="img-thumbnail" src="/image/{{ $key }}" />
+                <a href="/image/{{ $key }}"><img class="img-thumbnail" src="/image/{{ $key }}" /></a>
         </div>
+        {{ end }}
         {{ end }}
     </div>
 
