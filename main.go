@@ -79,6 +79,19 @@ func main() {
 		})
 	})
 
+	r.GET("/sub/*subfolder", func(ctx *gin.Context) {
+
+		folderName := ctx.Param("subfolder")
+		var fullname string = folderName
+		var folder_content map[string]string = folderContentsByType(fullname)
+
+		r.LoadHTMLGlob("templates/index.tmpl")
+		ctx.HTML(http.StatusOK, "index.tmpl", gin.H{
+			"TypesAndUrl": folder_content,
+		})
+
+	})
+
 	r.GET("/image/*imagename", func(ctx *gin.Context) {
 
 		imagename := ctx.Param("imagename")
