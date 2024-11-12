@@ -56,6 +56,7 @@ func folderContentsByType(folderName string) map[string]string {
 func main() {
 
 	r := gin.Default()
+	r.Static("/static", "static")
 
 	r.GET("/", func(c *gin.Context) {
 

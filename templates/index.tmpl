@@ -22,12 +22,14 @@
 
 </script>
 
+<div class="container mt-3">
+    <a href="/"><img src="/static/house.svg" alt=""></a>
+</div>
+
 <div class="container">
-    <div class="container">
+    <div class="container mt-4">
         {{ range .FileList }}
-        <ul>
-            <a href="/{{ . }}">{{ . }}</a>
-        </ul>
+            <a href="/{{ . }}"><img src="/static/folder.svg" alt=""> {{ . }}</img></a>
         {{ end }}
     
     </div>
@@ -37,7 +39,7 @@
         {{ range $key, $value := .TypesAndUrl }}
         {{ if eq "directory" $value }}
         <div class="row">
-                <a href="/sub/{{ $key }}">{{ $key }}</a>
+                <a href="/sub/{{ $key }}"><img src="/static/folder.svg" alt="">{{ $key }}</a>
         </div>
         {{ end }}
         {{ end }}
@@ -79,7 +81,9 @@
         {{ range $key, $value := .TypesAndUrl }}
         {{ if eq "json" $value }}
         <div class="row">
-                <a href="/image/{{ $key }}"><img class="img-thumbnail" src="/image/{{ $key }}" /></a>
+            
+                <a href="/image/{{ $key }}"><img style="width: 100px; height: 100px;" src="/static/filetype-json.svg" /></a>
+                <p>{{ $key }}</p>
         </div>
         {{ end }}
         {{ end }}
