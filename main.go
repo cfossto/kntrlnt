@@ -55,12 +55,14 @@ func folderContentsByType(folderName string) map[string]string {
 
 func main() {
 
+	var active_folder string = os.Getenv("KTLFOLDER")
+
 	r := gin.Default()
 	r.Static("/static", "static")
 
 	r.GET("/", func(c *gin.Context) {
 
-		var Contents []string = folderContentStringOutput("./example-folder")
+		var Contents []string = folderContentStringOutput("./" + active_folder)
 		r.LoadHTMLGlob("templates/index.tmpl")
 		c.HTML(http.StatusOK, "index.tmpl", gin.H{
 
@@ -71,7 +73,7 @@ func main() {
 	r.GET("/:foldername", func(ctx *gin.Context) {
 		folderName := ctx.Param("foldername")
 
-		var fullname string = "example-folder" + "/" + folderName
+		var fullname string = active_folder + "/" + folderName
 		var folder_content map[string]string = folderContentsByType(fullname)
 
 		r.LoadHTMLGlob("templates/index.tmpl")

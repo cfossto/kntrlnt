@@ -23,13 +23,14 @@
 </script>
 
 <div class="container mt-3">
-    <a href="/"><img src="/static/house.svg" alt=""></a>
+    <a href="/"><img src="/static/house.svg" alt="">Home</a>
 </div>
 
 <div class="container">
     <div class="container mt-4">
+        <h4>Folders</h4>
         {{ range .FileList }}
-            <a href="/{{ . }}"><img src="/static/folder.svg" alt=""> {{ . }}</img></a>
+            <a href="/{{ . }}"><p> </p><img src="/static/folder.svg" alt=""> {{ . }}</img></a>
         {{ end }}
     
     </div>
@@ -47,8 +48,9 @@
 
 
     {{ if .TypesAndUrl }}
-    <span class="container">
-    <h4>Columns</h4>
+    <span class="container ml-3">
+    <h4>Files</h4>
+    <label for="column-selector">Column count</label>
     <select id="column-selector" onChange="columnAdjust()">
         
         <option selected value="3">Initial: 3</option>
@@ -81,7 +83,7 @@
         {{ range $key, $value := .TypesAndUrl }}
         {{ if eq "json" $value }}
         <div class="row">
-            
+
                 <a href="/image/{{ $key }}"><img style="width: 100px; height: 100px;" src="/static/filetype-json.svg" /></a>
                 <p>{{ $key }}</p>
         </div>
