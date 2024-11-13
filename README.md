@@ -3,6 +3,6 @@ KNTRLNT (Kontrollant) is a web file browser written in Go.
 
 
 >[!IMPORTANT]
->This application needs the environment variable $KTFOLDER to be defined.
+> This application needs you to mount a basefolder that it can traverse.
 >
->```export KTFOLDER=<insert_your_base_folder>```
+> Ex.: ```docker run -p 8001:8001 -v <"insert_your_base_folder">:/data/kntrlnt kntrlnt```
